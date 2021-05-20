@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet/sdk as base
 
 WORKDIR /workspace
 COPY . .
-RUN dotnet publish --configuration Release --output out Medialab.Client
+RUN dotnet publish --configuration Release --output out Mouthfull.Client
 
 FROM mcr.microsoft.com/dotnet/aspnet
 
