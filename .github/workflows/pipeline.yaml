@@ -34,8 +34,8 @@ jobs:
       - run: docker logout
 
   deploy:
-    # needs:
-    #   - package
+    needs:
+      - package
     runs-on: ubuntu-20.04
     steps:
       - uses: azure/login@v1
