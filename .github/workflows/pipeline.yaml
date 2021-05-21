@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-      - run: docker image build --file dockerfile --tag mouthfull/mvc .
+      - run: docker image build --file Dockerfile --tag mouthfull/mvc .
       - run: echo $DOCKER_TOKEN | docker login --username $DOCKER_USER --password-stdin
       - run: docker image push mouthfull/mvc
       - run: docker logout
