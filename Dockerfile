@@ -8,4 +8,4 @@ FROM mcr.microsoft.com/dotnet/aspnet
 
 WORKDIR /workspace
 COPY --from=base /workspace/out .
-CMD [ "dotnet", "MouthFull.Client.dll" ]
+CMD [ "dotnet", "Mouthfull.Client.dll" ]
