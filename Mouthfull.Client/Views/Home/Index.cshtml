@@ -1,16 +1,31 @@
-﻿@{
+﻿@model HomeViewModel;
+@{
     ViewData["Title"] = "Home Page";
 }
-
+<script>
+    var input = [];
+    var node = document.createElement("P");
+    function addIngredient() {
+        entry = document.getElementById("inputGroupFile04").value;
+        input.push(entry)
+        console.log("entry: ", entry)
+        var entryText = document.createTextNode(entry);
+        node.appendChild(entryText);
+        document.getElementById("ingredient-list").appendChild(entryText);
+    }
+</script>
 <div class="text-center">
     <h1 class="display-4">Mouth Full</h1>
     <form>
-        <input type="text">
+        <div class="input-group">
+            <input type="text" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04"
+                aria-label="Upload">
+            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04"
+                onclick="addIngredient(value)">Button</button>
+        </div>
     </form>
 
-    <h1>API Response!</h1>
+    <h1 id="ingredient-list">Ingredient</h1>
 
-
-    <p>@ViewBag.response[0].title</p>
 
 </div>
