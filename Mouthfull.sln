@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mouthfull.Client", "Mouthfu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mouthfull.Testing", "Mouthfull.Testing\Mouthfull.Testing.csproj", "{E2EDD5BB-8BFC-4051-A3EE-1C4732750570}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mouthfull.Domain", "Mouthfull.Domain\Mouthfull.Domain.csproj", "{A8EEB672-0645-4AE2-9AC1-572C6950B6F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{E2EDD5BB-8BFC-4051-A3EE-1C4732750570}.Release|x64.Build.0 = Release|Any CPU
 		{E2EDD5BB-8BFC-4051-A3EE-1C4732750570}.Release|x86.ActiveCfg = Release|Any CPU
 		{E2EDD5BB-8BFC-4051-A3EE-1C4732750570}.Release|x86.Build.0 = Release|Any CPU
+		{A8EEB672-0645-4AE2-9AC1-572C6950B6F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8EEB672-0645-4AE2-9AC1-572C6950B6F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8EEB672-0645-4AE2-9AC1-572C6950B6F5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A8EEB672-0645-4AE2-9AC1-572C6950B6F5}.Debug|x64.Build.0 = Debug|Any CPU
+		{A8EEB672-0645-4AE2-9AC1-572C6950B6F5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A8EEB672-0645-4AE2-9AC1-572C6950B6F5}.Debug|x86.Build.0 = Debug|Any CPU
+		{A8EEB672-0645-4AE2-9AC1-572C6950B6F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8EEB672-0645-4AE2-9AC1-572C6950B6F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8EEB672-0645-4AE2-9AC1-572C6950B6F5}.Release|x64.ActiveCfg = Release|Any CPU
+		{A8EEB672-0645-4AE2-9AC1-572C6950B6F5}.Release|x64.Build.0 = Release|Any CPU
+		{A8EEB672-0645-4AE2-9AC1-572C6950B6F5}.Release|x86.ActiveCfg = Release|Any CPU
+		{A8EEB672-0645-4AE2-9AC1-572C6950B6F5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -8,4 +8,8 @@
     <PackageReference Include="newtonsoft.json" Version="13.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Mouthfull.Domain\Mouthfull.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
