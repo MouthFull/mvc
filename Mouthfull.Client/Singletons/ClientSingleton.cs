@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Net.Http.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using Mouthfull.Domain.Models;
 
 namespace Mouthfull.Client.Singletons
 {
@@ -28,20 +30,20 @@ namespace Mouthfull.Client.Singletons
       _configuration = configuration;
     }
 
-    public async Task<List<object>> GetRecipies(string path)
+    public async Task<List<Recipe>> GetRecipies(string path)
     {
       var response = await Client.GetAsync($"{_configuration["Services:mouthfullapi"]}{path}");
-      List<object> result = null;
+      List<Recipe> result = null;
 
       if (response.IsSuccessStatusCode)
       {
-        result = JsonConvert.DeserializeObject<List<object>>(await response.Content.ReadAsStringAsync());
+        result = await response.Content.ReadFromJsonAsync<List<Recipe>>();
 
         return result;
       }
       else if (!response.IsSuccessStatusCode)
       {
-        return new List<object>() { "no good", "no good" };
+        return new List<Recipe>() { new Recipe() { title = "no good" } };
       }
       return null;
     }
