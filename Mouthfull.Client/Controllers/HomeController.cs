@@ -1,19 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Mouthfull.Client.Models;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using Mouthfull.Client.Singletons;
 
 namespace Mouthfull.Client.Controllers
 {
+  [Route("[controller]")]
   public class HomeController : Controller
   {
-    public IActionResult Index()
+    private static IConfiguration _configuration;
+    private ClientSingleton _clientSingleton;
+
+    public HomeController(IConfiguration configuration)
     {
-      return View();
+      _configuration = configuration;
+      _clientSingleton = ClientSingleton.Instance(configuration);
+    }
+
+    public async Task<IActionResult> Index(string ingredients)
+    {
+      var response = await _clientSingleton.GetRecipies(ingredients);
+      ViewBag.response = response;
+      return View("Index");
     }
   }
 }
