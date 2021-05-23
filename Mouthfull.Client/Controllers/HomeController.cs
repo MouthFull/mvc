@@ -1,49 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using Mouthfull.Client.Models;
 using Newtonsoft.Json;
+using Mouthfull.Client.Singletons;
 
 namespace Mouthfull.Client.Controllers
 {
   [Route("[controller]")]
   public class HomeController : Controller
   {
-    private IConfiguration _configuration;
+    private static IConfiguration _configuration;
+    private ClientSingleton _clientSingleton;
 
     public HomeController(IConfiguration configuration)
     {
       _configuration = configuration;
+      _clientSingleton = ClientSingleton.Instance(configuration);
     }
 
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string ingredients)
     {
-      var client = new HttpClient();
-      var response = await client.GetAsync($"{_configuration["Services:mouthfullapi"]}");
-      List<object> result = null;
-
-      if (response.IsSuccessStatusCode)
-      {
-        System.Console.WriteLine("====================================");
-        System.Console.WriteLine(response.Content.ReadAsStringAsync());
-        result = JsonConvert.DeserializeObject<List<object>>(await response.Content.ReadAsStringAsync());
-        ViewBag.response = result;
-        return View("Index");
-      }
-      // if (!response.IsSuccessStatusCode)
-      // {
-      //   result = JsonConvert.DeserializeObject<List<string>>(await response.Content.ReadAsStringAsync());
-      //   ViewBag.response = result;
-      //   return View("ResponseSuccess");
-      // }
+      var response = await _clientSingleton.GetRecipies(ingredients);
+      ViewBag.response = response;
       return View("Index");
     }
   }
-
 }
