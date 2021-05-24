@@ -1,31 +1,90 @@
 ﻿@model HomeViewModel;
-@{
-    ViewData["Title"] = "Home Page";
-}
+
 <script>
     var input = [];
-    var node = document.createElement("P");
+
     function addIngredient() {
-        entry = document.getElementById("inputGroupFile04").value;
+        var node = document.createElement("LI");
+        node.className = ""
+        entry = document.getElementById("current-input").value;
         input.push(entry)
-        console.log("entry: ", entry)
         var entryText = document.createTextNode(entry);
         node.appendChild(entryText);
-        document.getElementById("ingredient-list").appendChild(entryText);
+        entry = "";
+        document.getElementById("ingredient-list").appendChild(node);
+
+    }
+    function searchRecipes() {
+        var form = document.getElementById("ingredient-input");
+        var hiddenInput = document.getElementById("Input");
+        hiddenInput.value = input.toString();
+        console.log("inputSoFar: ", input);
+        console.log("InputSubmitted: ", hiddenInput.value);
+        form.submit();
     }
 </script>
 <div class="text-center">
     <h1 class="display-4">Mouth Full</h1>
-    <form>
+    <form id="ingredient-input" method="post" action="searchrecipes">
         <div class="input-group">
-            <input type="text" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04"
-                aria-label="Upload">
+            <input type="hidden" asp-for="Input">
+            <input type="text" class="form-control" id="current-input" value="">
+
             <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04"
-                onclick="addIngredient(value)">Button</button>
+                onclick="addIngredient(value)">+</button>
         </div>
     </form>
 
-    <h1 id="ingredient-list">Ingredient</h1>
+    <h4>Ingredients</h1>
+        <ul id="ingredient-list"></ul>
+        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04"
+            onclick="searchRecipes()">Search</button>
+
+        <h4>Recipies</h1>
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    @for (int i = 0; i < Model.Recipes.Count; i++)
+                    {
+                        var recipe = Model.Recipes[i];
+                        if (i == 0)
+                        {
+                            <div class="carousel-item active">
+                                <img src="@recipe.image" class="d-block w-100" alt="...">
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="carousel-item">
+                                <img src="@recipe.image" class="d-block w-100" alt="...">
+                            </div>
+                        }
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>@recipe.title</h5>
+                            <p>Some representative placeholder content for the slide.</p>
+                        </div>
+                    }
+
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
 
 
 </div>

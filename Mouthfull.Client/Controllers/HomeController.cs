@@ -16,22 +16,27 @@ namespace Mouthfull.Client.Controllers
     private ClientSingleton _clientSingleton;
     private HomeViewModel _homeViewModel;
 
-    public HomeController(IConfiguration configuration)
+    public HomeController(IConfiguration configuration, HomeViewModel homeViewModel)
     {
       _configuration = configuration;
       _clientSingleton = ClientSingleton.Instance(configuration);
-      _homeViewModel = new HomeViewModel();
+      _homeViewModel = homeViewModel;
     }
-    public IActionResult Index(string ingredients)
+    [HttpGet]
+    public IActionResult Index(HomeViewModel home)
     {
-      return View("Index");
+      home.LoadDummyData();
+      return View("Index", home);
     }
-    public async Task<IActionResult> SearchRecipes()
+    [HttpPost]
+    public async Task<IActionResult> SearchRecipes(HomeViewModel home)
     {
-      var ingredients = HomeViewModel.ParseIngredients();
+      System.Console.WriteLine("=====================>" + home.Input);
+      var ingredients = home.Input;
+      System.Console.WriteLine("=====================>" + ingredients);
       var response = await _clientSingleton.GetRecipies(ingredients);
-      _homeViewModel.LoadRecipes(response);
-      return View("Index");
+      home.LoadRecipes(response);
+      return View("Index", home);
     }
   }
 }
