@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Mouthfull.Client.Singletons;
+using Mouthfull.Client.Models;
 
 namespace Mouthfull.Client.Controllers
 {
@@ -13,22 +14,29 @@ namespace Mouthfull.Client.Controllers
   {
     private static IConfiguration _configuration;
     private ClientSingleton _clientSingleton;
+    private HomeViewModel _homeViewModel;
 
-    public HomeController(IConfiguration configuration)
+    public HomeController(IConfiguration configuration, HomeViewModel homeViewModel)
     {
       _configuration = configuration;
       _clientSingleton = ClientSingleton.Instance(configuration);
+      _homeViewModel = homeViewModel;
     }
-    public IActionResult Index(string ingredients)
+    [HttpGet]
+    public IActionResult Index(HomeViewModel home)
     {
-      return View("Index");
+      home.LoadDummyData();
+      return View("Index", home);
     }
-    public async Task<IActionResult> SearchRecipes(string ingredients)
+    [HttpPost]
+    public async Task<IActionResult> SearchRecipes(HomeViewModel home)
     {
-      ingredients = "chicken";
+      System.Console.WriteLine("=====================>" + home.Input);
+      var ingredients = home.Input;
+      System.Console.WriteLine("=====================>" + ingredients);
       var response = await _clientSingleton.GetRecipies(ingredients);
-      ViewBag.response = response;
-      return View("Index");
+      home.LoadRecipes(response);
+      return View("Index", home);
     }
   }
 }
