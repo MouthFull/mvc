@@ -8,10 +8,20 @@ namespace Mouthfull.Testing
   public class UnitTest1
   {
     [Fact]
-    public void LoadIngredients()
+    public void ConcatinatesIngredients()
     {
-      List<string> IngredientList = new List<string>() { "chicken", "rice" };
-      string actual = HomeViewModel.LoadIngredients(IngredientList);
+      var HomeViewModel = new HomeViewModel();
+      HomeViewModel.InputArray = new List<string>() { "chicken", "rice" };
+      string actual = HomeViewModel.ParseIngredients();
+      var expected = "chicken,rice";
+      Assert.Equal(actual, expected);
+    }
+    [Fact]
+    public void RemovesWhiteSpace()
+    {
+      var HomeViewModel = new HomeViewModel();
+      HomeViewModel.InputArray = new List<string>() { " chicken ", " rice" };
+      string actual = HomeViewModel.ParseIngredients();
       var expected = "chicken,rice";
       Assert.Equal(actual, expected);
     }
