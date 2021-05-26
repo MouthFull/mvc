@@ -52,7 +52,7 @@ namespace Mouthfull.Client.Controllers
             {
                 recipes = await response.Content.ReadFromJsonAsync<List<RecipeSummary>>();
 
-                return View("RecipeSummary", recipes);
+                return View("History", recipes);
             }
             else
             {
@@ -76,8 +76,6 @@ namespace Mouthfull.Client.Controllers
             {
                 return BadRequest();
             }
-
-            return View("RecipeSummary", id);
 
         }
     }
