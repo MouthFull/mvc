@@ -15,7 +15,7 @@
             <div class="card">
                 <img src="@recipe.image" class="card-img-top" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">@recipe.title</h5>
+                    <a href=@Url.Action("RecipeSummary","Home", new { id = recipe.id }) class="card-title">@recipe.title</a>
                 </div>
             </div>
         </div>
