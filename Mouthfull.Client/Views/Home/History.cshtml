@@ -1,0 +1,23 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Recipe>;
+
+
+
+<row class="card-group">
+
+    @foreach(var recipe in Model)
+    {
+        <div class="col-sm">
+            <div class="card">
+                <img src="@recipe.image" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@recipe.title</h5>
+                </div>
+            </div>
+        </div>
+    }
+</row>

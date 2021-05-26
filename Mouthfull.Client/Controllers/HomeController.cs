@@ -38,5 +38,13 @@ namespace Mouthfull.Client.Controllers
       home.LoadRecipes(response);
       return View("Index", home);
     }
+    public async Task<IActionResult> History() 
+        {
+           // var response = await _clientSingleton.GetRecipies("");
+            HomeViewModel home = new HomeViewModel();
+            home.LoadDummyData();
+            var recipes = home.Recipes;
+            return View("History", recipes);
+        }
   }
 }
