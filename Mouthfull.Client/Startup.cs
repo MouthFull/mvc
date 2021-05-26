@@ -28,6 +28,7 @@ namespace Mouthfull.Client
       services.AddControllersWithViews();
       services.AddScoped<ClientSingleton>();
       services.AddScoped<HomeViewModel>();
+      services.AddHttpClient();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

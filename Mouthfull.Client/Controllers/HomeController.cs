@@ -44,22 +44,31 @@ namespace Mouthfull.Client.Controllers
         }
         public async Task<IActionResult> History()
         {
-            // var response = await _clientSingleton.GetRecipies("");
-            HomeViewModel home = new HomeViewModel();
-            home.LoadDummyData();
-            var recipes = home.Recipes;
-            return View("History", recipes);
+            string endpoints = "http://localhost:5000/api/history";
+            var httpclient = _httpClientFactory.CreateClient();
+            var response = await httpclient.GetAsync($"{endpoints}");
+            List<RecipeSummary> recipes = new List<RecipeSummary>();
+            if (response.IsSuccessStatusCode)
+            {
+                recipes = await response.Content.ReadFromJsonAsync<List<RecipeSummary>>();
+
+                return View("RecipeSummary", recipes);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
         public async Task<IActionResult> RecipeSummary(int id)
         {
-            string endpoints = "";
+            string endpoints = "http://localhost:5000/api/recipe/";
             var httpclient = _httpClientFactory.CreateClient();
             var response = await httpclient.GetAsync($"{endpoints}{id}");
-            Recipe result = new Recipe();
+            RecipeSummary result = new RecipeSummary();
 
             if (response.IsSuccessStatusCode)
             {
-                result = await response.Content.ReadFromJsonAsync<Recipe>();
+                result = await response.Content.ReadFromJsonAsync<RecipeSummary>();
 
                 return View("RecipeSummary", result);
             }
@@ -67,6 +76,8 @@ namespace Mouthfull.Client.Controllers
             {
                 return BadRequest();
             }
+
+            return View("RecipeSummary", id);
 
         }
     }
