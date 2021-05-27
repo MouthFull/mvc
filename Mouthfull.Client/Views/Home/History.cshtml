@@ -2,16 +2,13 @@
 
 
 
-<row class="card-group">
-
-    @foreach(var recipe in Model)
+<div class="container">
+    <h1>Viewed History</h1>
+    <br />
+<div class="list-group">
+    @foreach (var recipe in Model)
     {
-        <div class="col-sm">
-            <div class="card">
-                <div class="card-body">
-                    <a href=@Url.Action("RecipeSummary","Home", new { id = recipe.id }) class="card-title">@recipe.title</a>
-                </div>
-            </div>
-        </div>
+        <a href=@Url.Action("RecipeSummary", "Home", new { id = recipe.id }) class="list-group-item">@recipe.title</a>
     }
-</row>
+</div>
+    </div>
