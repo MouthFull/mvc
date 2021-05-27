@@ -25,15 +25,13 @@ namespace Mouthfull.Client.Controllers
     [HttpGet]
     public IActionResult Index(HomeViewModel home)
     {
-      home.LoadDummyData();
       return View("Index", home);
     }
     [HttpPost]
     public async Task<IActionResult> SearchRecipes(HomeViewModel home)
     {
-      System.Console.WriteLine("=====================>" + home.Input);
+
       var ingredients = home.Input;
-      System.Console.WriteLine("=====================>" + ingredients);
       var response = await _clientSingleton.GetRecipies(ingredients);
       home.LoadRecipes(response);
       return View("Index", home);
