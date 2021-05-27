@@ -44,7 +44,7 @@ namespace Mouthfull.Client.Controllers
         }
         public async Task<IActionResult> History()
         {
-            string endpoints = "http://localhost:5000/api/history";
+            string endpoints = "https://mouthfullservice.azurewebsites.net/api/history";
             var httpclient = _httpClientFactory.CreateClient();
             var response = await httpclient.GetAsync($"{endpoints}");
             List<RecipeSummary> recipes = new List<RecipeSummary>();
@@ -61,7 +61,7 @@ namespace Mouthfull.Client.Controllers
         }
         public async Task<IActionResult> RecipeSummary(int id)
         {
-            string endpoints = "http://localhost:5000/api/recipe/";
+            string endpoints = "http://mouthfullservice.azurewebsites.net/api/recipe/";
             var httpclient = _httpClientFactory.CreateClient();
             var response = await httpclient.GetAsync($"{endpoints}{id}");
             RecipeSummary result = new RecipeSummary();
