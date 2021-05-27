@@ -32,11 +32,6 @@ namespace Mouthfull.Client.Models
     public List<Recipe> LoadDummyData()
     {
       var recipeList = new List<Recipe>() {
-        new Recipe() {title = "dummy title 1", image = "https://spoonacular.com/recipeImages/664169-312x231.jpg"},
-        new Recipe() {title = "dummy title 2", image = "https://spoonacular.com/recipeImages/664169-312x231.jpg"},
-        new Recipe() {title = "dummy title 2", image = "https://spoonacular.com/recipeImages/664169-312x231.jpg"},
-        new Recipe() {title = "dummy title 2", image = "https://spoonacular.com/recipeImages/664169-312x231.jpg"},
-        new Recipe() {title = "dummy title 2", image = "https://spoonacular.com/recipeImages/664169-312x231.jpg"},
       };
       Recipes = recipeList;
       return recipeList;

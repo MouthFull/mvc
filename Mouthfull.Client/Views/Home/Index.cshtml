@@ -10,7 +10,7 @@
         input.push(entry)
         var entryText = document.createTextNode(entry);
         node.appendChild(entryText);
-        entry = "";
+        document.getElementById("current-input").value = "";
         document.getElementById("ingredient-list").appendChild(node);
 
     }
@@ -50,7 +50,7 @@
                         <div class="card">
                             <img src="@recipe.image" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">@recipe.title</h5>
+                                <a href=@Url.Action("RecipeSummary", "Home", new { id = recipe.id }) class="list-group-item">@recipe.title</a>
                                 <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
                                     additional content. This content is a little bit longer.</p>
                             </div>
