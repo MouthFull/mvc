@@ -5,12 +5,12 @@
 
     function addIngredient() {
         var node = document.createElement("LI");
-        node.className = ""
-        entry = document.getElementById("current-input").value;
+        node.className = "list-group-item";
+        var entry = document.getElementById("current-input").value;
         input.push(entry)
         var entryText = document.createTextNode(entry);
         node.appendChild(entryText);
-        entry = "";
+        document.getElementById("current-input").value = "";
         document.getElementById("ingredient-list").appendChild(node);
 
     }
@@ -23,36 +23,51 @@
 </script>
 <div class="text-center">
     <h1 class="display-4">Mouth Full</h1>
-    <form id="ingredient-input" method="post" action="searchrecipes">
-        <div class="input-group">
-            <input type="hidden" asp-for="Input">
-            <input type="text" class="form-control" id="current-input" value="">
 
-            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04"
-                onclick="addIngredient(value)">+</button>
+    <div class="row">
+
+        <div class="col"></div>
+        <div class="col">
+            <form id="ingredient-input" method="post" action="searchrecipes">
+                <div class="input-group">
+                    <input type="hidden" asp-for="Input">
+                    <input type="text" class="form-control" id="current-input" value="">
+
+                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04"
+                        onclick="addIngredient(value)">+</button>
+                </div>
+            </form>
+            <br></br>
+
+            <h4>Ingredients</h1>
+                <ul list-group" id="ingredient-list"></ul>
+
+                <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04"
+                    onclick="searchRecipes()">Search</button>
+                <hr>
         </div>
-    </form>
 
-    <h4>Ingredients</h1>
-        <ul id="ingredient-list"></ul>
-        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04"
-            onclick="searchRecipes()">Search</button>
+        <div class="col"></div>
+    </div>
+    @if (Model.Recipes != null)
+    {
+        <h4>Recipies</h4>
+        <div class="card-group">
 
-        <h4>Recipies</h1>
-            <row class="card-group">
-
-                @for (var i = 0; i < Model.Recipes.Count; i++)
-                {
-                    var recipe = Model.Recipes[i];
-                    <div class="col-sm">
-                        <div class="card">
-                            <img src="@recipe.image" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">@recipe.title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                    additional content. This content is a little bit longer.</p>
-                            </div>
+            @for (var i = 0; i < Model.Recipes.Count; i++)
+            {
+                var recipe = Model.Recipes[i];
+                <div class="col-sm">
+                    <div class="card">
+                        <img src="@recipe.image" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">@recipe.title</h5>
+                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                additional content. This content is a little bit longer.</p>
                         </div>
                     </div>
-                }
-            </row>
+                </div>
+            }
+        </div>
+
+    }
