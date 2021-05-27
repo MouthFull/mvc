@@ -8,10 +8,8 @@
     {
         <div class="col-sm">
             <div class="card">
-                <img src="@recipe.image" class="card-img-top" alt="...">
                 <div class="card-body">
                     <a href=@Url.Action("RecipeSummary","Home", new { id = recipe.id }) class="card-title">@recipe.title</a>
-                    <p>@recipe.summary</p>
                 </div>
             </div>
         </div>
