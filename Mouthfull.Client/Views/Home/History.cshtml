@@ -6,9 +6,9 @@
     <h1>Viewed History</h1>
     <br />
 <div class="list-group">
-    @foreach (var recipe in Model)
+    @foreach (var Recipe in Model)
     {
-        <a href=@Url.Action("RecipeSummary", "Home", new { id = recipe.id }) class="list-group-item">@recipe.title</a>
+        <a href=@Url.Action("RecipeSummary", "Home", new { id = Recipe.id }) class="list-group-item">@Recipe.title</a>
     }
 </div>
     </div>
