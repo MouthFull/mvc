@@ -1,0 +1,14 @@
+﻿@model List<RecipeSummary>
+
+
+
+<div class="container">
+    <h1>Viewed History</h1>
+    <br />
+<div class="list-group">
+    @foreach (var Recipe in Model)
+    {
+        <a href=@Url.Action("RecipeSummary", "Home", new { id = Recipe.id }) class="list-group-item">@Recipe.title</a>
+    }
+</div>
+    </div>

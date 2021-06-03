@@ -13,6 +13,7 @@
         document.getElementById("current-input").value = "";
         document.getElementById("ingredient-list").appendChild(node);
 
+
     }
     function searchRecipes() {
         var form = document.getElementById("ingredient-input");
@@ -26,7 +27,7 @@
 
     <div class="row">
 
-        <div class="col"></div>
+
         <div class="col">
             <form id="ingredient-input" method="post" action="searchrecipes">
                 <div class="input-group">
@@ -37,6 +38,7 @@
                         onclick="addIngredient(value)">+</button>
                 </div>
             </form>
+
             <br></br>
 
             <h4>Ingredients</h1>
@@ -47,27 +49,25 @@
                 <hr>
         </div>
 
-        <div class="col"></div>
-    </div>
-    @if (Model.Recipes != null)
-    {
-        <h4>Recipies</h4>
-        <div class="card-group">
 
-            @for (var i = 0; i < Model.Recipes.Count; i++)
-            {
-                var recipe = Model.Recipes[i];
-                <div class="col-sm">
-                    <div class="card">
-                        <img src="@recipe.image" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">@recipe.title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.</p>
+        <h4>Recipies</h1>
+            <row class="card-group">
+
+                @for (var i = 0; i < Model.Recipes.Count; i++)
+                {
+                    var recipe = Model.Recipes[i];
+                    <div class="col-sm">
+                        <div class="card">
+                            <img src="@recipe.image" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <a href=@Url.Action("RecipeSummary", "Home", new { id = recipe.id }) class="list-group-item">@recipe.title</a>
+                                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
+                                    additional content. This content is a little bit longer.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+
             }
         </div>
 
-    }
+
