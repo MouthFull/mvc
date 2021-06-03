@@ -28,8 +28,6 @@ git clone https://github.com/MouthFull/mvc.git
 ### Development server
 
 Run `dotnet run` for a dev server. Navigate to `http://localhost:5000/home/index`. 
-![image](https://user-images.githubusercontent.com/67556178/120580002-047f0c80-c3ee-11eb-8c72-68ef35426147.png)
-
 
 ### Build
 
@@ -40,7 +38,15 @@ Run `dotnet test` to execute the unit tests via [Xunit](https://github.com/xunit
 
 ## Usage
 
-- Navigate the main page at local
+- Navigate the main page at localhost:5000/home/index
+- input an ingredient and click the "+" button to include it in your list
+- click "search" when you are ready to search for recipes
+![image](https://user-images.githubusercontent.com/67556178/120580811-68ee9b80-c3ef-11eb-9fcd-16cf4e04a98d.png)
+
+- click on a meal idea to navigate to the recipe summary
+
+- click on "history" in the nav bar to view recipes other users have visited
+
 
 ## Contributors
 - Elwyn Palmerton
