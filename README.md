@@ -39,13 +39,13 @@ Run `dotnet test` to execute the unit tests via [Xunit](https://github.com/xunit
 ## Usage
 
 - Navigate the main page at localhost:5000/home/index
-- input an ingredient and click the "+" button to include it in your list
-- click "search" when you are ready to search for recipes
+- Input an ingredient and click the "+" button to include it in your list
+- Click "search" when you are ready to search for recipes
 ![image](https://user-images.githubusercontent.com/67556178/120580811-68ee9b80-c3ef-11eb-9fcd-16cf4e04a98d.png)
 
-- click on a meal idea to navigate to the recipe summary
+- Click on a meal idea to navigate to the recipe summary
 
-- click on "history" in the nav bar to view recipes other users have visited
+- Click on "history" in the nav bar to view recipes other users have visited
 
 
 ## Contributors
