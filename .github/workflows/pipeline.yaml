@@ -1,57 +1,3 @@
-<<<<<<< HEAD
-name: pipeline
-on: push
-
-jobs:
-  build:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2
-      - run: dotnet build
-
-  analyze:
-    needs:
-      - build
-    env:
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2
-      - run: dotnet tool install -g dotnet-sonarscanner
-      - run: dotnet sonarscanner begin -k:"MouthFull_mvc" /o:"mouthfullservice" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io"
-      - run: dotnet build
-      - run: dotnet sonarscanner end -d:sonar.login=$SONAR_TOKEN
-
-
-
-  package:
-    env:
-      DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
-      DOCKER_USER: ${{ secrets.DOCKER_USER }}
-    needs:
-      - analyze
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2
-      - run: docker image build --file Dockerfile --tag mouthfull/mvc .
-      - run: echo $DOCKER_TOKEN | docker login --username $DOCKER_USER --password-stdin
-      - run: docker image push mouthfull/mvc
-      - run: docker logout
-
-  deploy:
-    needs:
-      - package
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - uses: azure/webapps-deploy@v2
-        with:
-          app-name: mouthfull
-          images: mouthfull/mvc
-=======
 name: pipeline
 on: push
 
@@ -99,4 +45,3 @@ jobs:
         with:
           app-name: mouthfull
           images: mouthfull/mvc
->>>>>>> implement-user
